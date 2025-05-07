@@ -69,6 +69,8 @@ export function TrainingList({ }) {
         {
             headerName: '',
             field: 'actions',
+            filter: false,
+            sortable: false,
             cellRenderer: (params) => (
                 <Button
                     variant="outlined"
@@ -87,11 +89,11 @@ export function TrainingList({ }) {
         <Stack sx={{ display: "flex", flexGrow: 1, flexDirection: "column", gap: 2, padding: 2 }}>
 
             <Stack>
-                <Typography>Training list</Typography>
+                <Typography variant="h6" >Training list</Typography>
             </Stack>
 
             {/* AG Grid for displaying the training data */}
-            <Box sx={{ width: "100%", height: 800 }}>
+            <Box sx={{ width: "100%", height: 700 }}>
                 <AgGridReact
                     rowData={trainings}
                     columnDefs={columDefs}
@@ -100,7 +102,7 @@ export function TrainingList({ }) {
                         floatingFilter: true,
                     }}></AgGridReact>
             </Box>
-            
+
             {/* Render delete dialog only if a training is selected for deletion */}
             {deleteDialogOpen && (
                 <DeleteTrainingDialog

@@ -73,7 +73,12 @@ export default function AddCustomer({ saveCustomer }) {
             </Button>
             {/* Dialog containing form fields */}
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>New Customer</DialogTitle>
+                <DialogTitle
+                sx={{
+                    color: '#8B0000'
+                }}
+                >Add new customer to PersonalTrainer
+                </DialogTitle>
                 <DialogContent>
                     {/* Each TextField handles a specific customer property */}
                     <TextField
@@ -143,8 +148,20 @@ export default function AddCustomer({ saveCustomer }) {
 
                 {/* Dialog action buttons */}
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={addCustomer}>Add</Button>
+                    <Button 
+                    onClick={handleClose}
+                    sx={{
+                        color: '#FFB6C1'
+                    }}
+                    >Cancel
+                    </Button>
+                    <Button 
+                    onClick={addCustomer}
+                    sx={{
+                        color: '#8B0000'
+                    }}
+                    >Add
+                    </Button>
                 </DialogActions>
             </Dialog>
 

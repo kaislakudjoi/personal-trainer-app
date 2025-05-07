@@ -68,8 +68,18 @@ export default function AddTrainingToCustomer ({customer, onClose, onTrainingAdd
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={onClose}>Cancel</Button>
-                    <Button onClick={handleSave}>Add</Button>
+                    <Button 
+                    onClick={onClose}
+                    sx={{
+                        color: '#FFB6C1'
+                    }}
+                    >Cancel</Button>
+                    <Button 
+                    onClick={handleSave}
+                    sx={{
+                        color: '#8B0000'
+                    }}
+                    >Add</Button>
                 </DialogActions>
             </Dialog>
  

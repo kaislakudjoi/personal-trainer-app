@@ -39,7 +39,6 @@ describe("Training REST API", () => {
 
 });
 
-
 async function resetTrainingDatabase() {
     const response = await fetch("https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/reset", {
         method: "POST",

@@ -112,11 +112,21 @@ export default function EditCustomer({ customer, saveCustomer, onClose}){
             </DialogContent>
             <DialogActions>
                 {/* Cancel and Save buttons */}
-                <Button onClick={onClose} color="primary">
-                  Cancel
+                <Button 
+                onClick={onClose} 
+                color="primary"
+                sx={{
+                    color: '#FFB6C1'
+                }}
+                >Cancel
                 </Button>
-                <Button onClick={() => handleSave()} color="primary">
-                  Save
+                <Button 
+                onClick={() => handleSave()} 
+                color="primary"
+                sx={{
+                    color: '#8B0000'
+                }}
+                >Save
                 </Button>
             </DialogActions>
         </Dialog>

@@ -84,6 +84,8 @@ export function CustomerList({ }) {
         {
             headerName: '',
             field: 'actions',
+            filter: false,
+            sortable: false,
             cellRenderer: (params) => (
                 <Stack direction="row" spacing={1}>
                     <Button
@@ -107,7 +109,10 @@ export function CustomerList({ }) {
             )
         },
         {
+            headerName: '',
             field: 'action',
+            filter: false,
+            sortable: false,
             cellRenderer: (params) => (
                 <Button
                     variant="outlined"
@@ -151,18 +156,39 @@ export function CustomerList({ }) {
 
     return (
         <Stack sx={{ display: "flex", flexGrow: 1, flexDirection: "column", gap: 2, padding: 2 }}>
-            <Typography>Customer list</Typography>
+            <Typography variant="h6">Customers</Typography>
 
-            {/* Add new customer button and form */}
-            <AddCustomer saveCustomer={saveCustomer} />
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 3
+                }}
+            >
 
-            {/* Export to CSV button */}
-            <Button variant="outlined" onClick={exportToCSV}>
-                Export CSV
-            </Button>
+                {/* Add new customer button and form */}
+                <AddCustomer saveCustomer={saveCustomer} />
+
+                {/* Export to CSV button */}
+                <Button
+                    variant="outlined"
+                    onClick={exportToCSV}
+                    sx={{
+                        color: '#FFB6C1',
+                        borderColor: '#FFB6C1',
+                        '&:hover': {
+                            backgroundColor: '#FFB6C1',
+                            color: 'white',
+                        },
+                    }}
+                >
+                    Export CSV
+                </Button>
+            </Box>
 
             {/* Customer table */}
-            <Box sx={{ width: "100%", height: 800 }}>
+            <Box sx={{ width: "100%", height: 700 }}>
                 <AgGridReact
                     rowData={customers}
                     columnDefs={columDefs}
@@ -189,8 +215,8 @@ export function CustomerList({ }) {
                     onClose={() => setEditCustomer(null)}
                 />
             )}
-            
-             {/* Add training to customer dialog */}
+
+            {/* Add training to customer dialog */}
             {trainingCustomer && (
                 <AddTrainingToCustomer
                     customer={trainingCustomer}
