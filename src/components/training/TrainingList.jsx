@@ -93,7 +93,7 @@ export function TrainingList({ }) {
             </Stack>
 
             {/* AG Grid for displaying the training data */}
-            <Box sx={{ width: "100%", height: 700 }}>
+            <Box sx={{ width: "80%", height: 700 }}>
                 <AgGridReact
                     rowData={trainings}
                     columnDefs={columDefs}
