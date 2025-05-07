@@ -4,20 +4,16 @@ import { AgGridReact } from "ag-grid-react";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { useState, useEffect } from 'react';
 import { getTrainings } from '../../api/trainingApi';
-import { getCustomers } from '../../api/customerApi';
 import dayjs from 'dayjs';
 import DeleteTrainingDialog from './DeleteTrainingDialog';
-import { addTraining } from '../../api/trainingApi';
 
 // Register all Community features
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 // TrainingList component
-export function TrainingList({ }) {
+export function TrainingList() {
     // State to hold the training data
     const [trainings, setTrainings] = useState([]);
-    // State to hold the customer data
-    const [customers, setCustomers] = useState([]);
     // State to manage the delete dialog
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     // State to hold the training to be deleted
@@ -27,16 +23,6 @@ export function TrainingList({ }) {
     useEffect(() => {
         getTrainings().then(trainingArray => setTrainings(trainingArray));
     }, []);
-
-    // Adds a new training to the list
-    const saveTraining = (newTraining) => {
-        const updatedTraining = {
-            ...newTraining,
-            customerName: newTraining.customer, // tai hae nimi asiakas-id:stä jos käytät sitä
-            duration: Number(newTraining.duration)
-        };
-        setTrainings([...trainings, updatedTraining]);
-    };
 
     // Opens the delete dialog
     const handleDeleteClick = (training) => {
@@ -57,8 +43,9 @@ export function TrainingList({ }) {
         setTrainingToDelete(null);
     };
 
+
     // Column definitions for the AgGrid
-    const [columDefs, setColumnDefs] = React.useState([
+    const  columDefs = [
         { field: 'customerName', headerName: 'Customer Name' },
         {
             field: 'date',
@@ -82,7 +69,7 @@ export function TrainingList({ }) {
                 </Button>
             )
         }
-    ]);
+    ];
 
 
     return (

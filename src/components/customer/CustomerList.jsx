@@ -15,7 +15,7 @@ import AddTrainingToCustomer from '../training/AddTrainingToCustomer';
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 // CustomerList component
-export function CustomerList({ }) {
+export function CustomerList() {
     // State to hold the customer data
     const [customers, setCustomers] = useState([]);
     // State to manage the delete dialog
@@ -73,7 +73,7 @@ export function CustomerList({ }) {
     };
 
     // Column definitions for the AgGrid
-    const [columDefs, setColumnDefs] = React.useState([
+    const columDefs = [
         { field: 'firstname' },
         { field: 'lastname' },
         { field: 'streetaddress' },
@@ -127,7 +127,7 @@ export function CustomerList({ }) {
 
 
 
-    ]);
+    ];
 
     // Export customers to CSV function
     const exportToCSV = () => {

@@ -1,5 +1,3 @@
-import { data } from "react-router-dom";
-
 // Fetch all trainings from the API
 export async function getTrainings() {
     const response = await fetch('https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/trainings');

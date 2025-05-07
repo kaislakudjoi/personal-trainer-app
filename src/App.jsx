@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react'
-import { getCustomers } from './api/customerApi'
-import { getTrainings } from './api/trainingApi'
+import { useState } from 'react'
 import { CustomerList } from './components/customer/CustomerList';
 import { TrainingList } from './components/training/TrainingList';
 import { Calendar } from './components/Calendar';
