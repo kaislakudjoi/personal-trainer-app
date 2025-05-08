@@ -68,6 +68,24 @@ export async function addTraining(training) {
     // Return the created training
     return data;
 }
+
+// Delete a training from the API
+export async function deleteTraining(trainingUrl) {
+    const response = await fetch(trainingUrl, {
+        method: 'DELETE',
+    });
+
+    if (!response.ok) {
+        if (response.status === 404) {
+            throw new Error('Training not found.');
+        } else {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    }
+
+    return;
+}
+
  
 
 

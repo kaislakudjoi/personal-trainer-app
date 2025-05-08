@@ -3,7 +3,7 @@ import { Button, Box, Stack, Typography } from "@mui/material";
 import { AgGridReact } from "ag-grid-react";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { useState, useEffect } from 'react';
-import { getTrainings } from '../../api/trainingApi';
+import { getTrainings, deleteTraining } from '../../api/trainingApi';
 import dayjs from 'dayjs';
 import DeleteTrainingDialog from './DeleteTrainingDialog';
 
@@ -31,12 +31,18 @@ export function TrainingList() {
     };
 
     // Handles the confirmation of deletion
-    const handleDeleteConfirm = (training) => {
-        setTrainings(trainings.filter(c => c !== training));
-        setDeleteDialogOpen(false);
-        setTrainingToDelete(null);
+    const handleDeleteConfirm = async (training) => {
+        try {
+            await deleteTraining(training._links.self.href);  
+            setTrainings(await getTrainings());                   
+        } catch (error) {
+            console.error("Error deleting training:", error);
+        } finally {
+            setDeleteDialogOpen(false);
+            setTrainingToDelete(null);
+        }
     };
-
+    
     // Handles the cancellation of deletion
     const handleDeleteCancel = () => {
         setDeleteDialogOpen(false);

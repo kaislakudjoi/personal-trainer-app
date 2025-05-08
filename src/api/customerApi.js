@@ -53,5 +53,22 @@ export async function updateCustomer(customer) {
 };
 
 
+// Delete a customer from the API
+export async function deleteCustomer(customerUrl) {
+    const response = await fetch(customerUrl, {
+        method: 'DELETE',
+    });
+
+    if (!response.ok) {
+        if (response.status === 404) {
+            throw new Error('Customer not found.');
+        } else {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    }
+    return;
+}
+
+
 
 

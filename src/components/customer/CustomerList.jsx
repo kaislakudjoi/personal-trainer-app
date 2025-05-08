@@ -9,6 +9,7 @@ import AddCustomer from './AddCustomer';
 import DeleteCustomerDialog from './DeleteCustomerDialog';
 import EditCustomer from './EditCustomer';
 import AddTrainingToCustomer from '../training/AddTrainingToCustomer';
+import { deleteCustomer } from '../../api/customerApi';
 
 
 // Register all Community features
@@ -60,11 +61,18 @@ export function CustomerList() {
     };
 
     // Handles the confirmation of deletion
-    const handleDeleteConfirm = (customer) => {
-        setCustomers(customers.filter(c => c !== customer));
-        setDeleteDialogOpen(false);
-        setCustomerToDelete(null);
+    const handleDeleteConfirm = async (customer) => {
+        try {
+            await deleteCustomer(customer._links.self.href);
+            setCustomers(await getCustomers());             
+        } catch (error) {
+            console.error("Error deleting customer:", error);
+        } finally {
+            setDeleteDialogOpen(false);
+            setCustomerToDelete(null);
+        }
     };
+
 
     // Handles the cancellation of deletion
     const handleDeleteCancel = () => {
